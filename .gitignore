@@ -129,3 +129,4 @@ dist
 # public modules to ignore
 public/colored-shapes
 public/flying-blocks
+public/above-clouds
