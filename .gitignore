@@ -125,3 +125,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# public modules to ignore
+public/colored-shapes
+public/flying-blocks
