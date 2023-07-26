@@ -8,8 +8,12 @@ const app = express();
 app.use(express.static(path.join(__dirname, "../public")));
 app.use("/resources", express.static(path.join(__dirname, "../public/flying-blocks/resources")));
 
-app.get("/", (_req, res) => {
-	res.sendStatus(200);
+app.get("/", (_req, res, next) => {
+	try {
+    res.sendFile("index.html", { root: path.join(__dirname, "../public") });
+	} catch (error) {
+		next(error);
+	}
 });
 
 app.get("/shapes", (_req, res, next) => {
