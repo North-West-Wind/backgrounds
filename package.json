@@ -6,8 +6,9 @@
   "scripts": {
     "build-colored-shapes": "cd colored-shapes && npm run build",
     "build-flying-blocks": "cd flying-blocks && npm run build",
-    "build": "npm run build-colored-shapes && npm run build-flying-blocks && tsc",
-    "deep-install": "cd colored-shapes && npm i && cd ../flying-blocks && npm i",
+    "build-above-clouds": "cd above-clouds && npm run build",
+    "build": "npm run build-colored-shapes && npm run build-flying-blocks && npm run build-above-clouds && tsc",
+    "deep-install": "npm i && cd colored-shapes && npm i && cd ../flying-blocks && npm i && cd ../above-clouds && npm i",
     "start": "node dist/index.js",
     "test": "ts-node src/index.ts"
   },
