@@ -4,7 +4,7 @@
   "description": "Flying blocks background for streaming.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp -r dist/flying-blocks ../public/ && cp dist/index.html ../public/flying-blocks/ && cp -r resources ../public/flying-blocks/resources",
+    "build": "vite build && cp -r dist/flying-blocks ../public/ && cp dist/index.html ../public/flying-blocks/ && cp favicon.svg ../public/flying-blocks/ && cp -r resources ../public/flying-blocks/resources",
     "serve": "vite preview"
   },
   "devDependencies": {
