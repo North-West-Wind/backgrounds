@@ -7,7 +7,7 @@
     "build-colored-shapes": "cd colored-shapes && npm run build",
     "build-flying-blocks": "cd flying-blocks && npm run build",
     "build": "npm run build-colored-shapes && npm run build-flying-blocks && tsc",
-    "deep-install": "cd colored-shapes && npm i && cd ../flying-blocks && npm run build",
+    "deep-install": "cd colored-shapes && npm i && cd ../flying-blocks && npm i",
     "start": "node dist/index.js",
     "test": "ts-node src/index.ts"
   },
