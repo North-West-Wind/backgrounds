@@ -6,6 +6,11 @@ import { FillMode, SineWave, drawSine } from "layered-sine-browser";
 const crescent = new Image();
 crescent.src = "above-clouds/crescent.svg";
 
+const MAX_STARS = 100;
+const positions: { x: number, y: number }[] = [];
+for (let ii = 0; ii < MAX_STARS; ii++)
+  positions.push({ x: Math.random(), y: Math.random() });
+
 // We will assign attributes during draw.
 const wave1 = new SineWave(0, 0, 0.8, Math.PI * 2 * Math.random(), 0);
 wave1.color = 0xcfcfcf;
@@ -91,6 +96,12 @@ const App: React.FC = () => {
     ctx.fill();
     const size = ctx.canvas.width * 0.05;
     if (night) {
+      ctx.fillStyle = "#aaa";
+      for (const pos of positions) {
+        ctx.beginPath();
+        ctx.arc(ctx.canvas.width * pos.x, (wave4.y - wave4.amplitude) * pos.y, ctx.canvas.width * 0.001, 0, Math.PI * 2);
+        ctx.fill();
+      }
       if (crescent.complete) {
         ctx.translate(x, y);
         ctx.rotate(rotation);
