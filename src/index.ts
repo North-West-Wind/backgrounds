@@ -40,6 +40,14 @@ app.get("/clouds", (_req, res, next) => {
 	}
 });
 
+app.get("/break", (_req, res, next) => {
+	try {
+    res.sendFile("break/index.html", { root: path.join(__dirname, "../public") });
+	} catch (error) {
+		next(error);
+	}
+})
+
 const listener = app.listen(process.env.PORT || 3000, () => {
 	console.log(`App listening on port ${(<AddressInfo>listener.address()).port}`);
 });

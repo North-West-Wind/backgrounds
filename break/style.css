@@ -1,0 +1,45 @@
+body {
+	margin: 0;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#svg-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#cloud {
+	position: fixed;
+	visibility: hidden;
+	transition: transform 20s linear;
+	background: linear-gradient(to right, #0000 0%, #0002 30%, #0002 70%, #0000 100%);
+	height: 100vh;
+	transform: translateX(100vw);
+}
+
+#rain {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #0003;
+	opacity: 0;
+	transition: opacity 5s ease;
+}
+
+.raindrop {
+	transition: transform .25s linear;
+	background-color: #fff7;
+	width: 1vmin;
+	height: 5vmin;
+	border-radius: .5vmin;
+	position: fixed;
+	top: -5vmin;
+}
