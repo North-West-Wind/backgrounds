@@ -9,7 +9,7 @@
     "build:above-clouds": "cd above-clouds && npm run build",
 		"build:break": "cd break && npm run build",
     "build": "npm run build:colored-shapes && npm run build:flying-blocks && npm run build:above-clouds && npm run build:break && tsc",
-    "deep-install": "npm i && cd colored-shapes && npm i && cd ../flying-blocks && npm i && cd ../above-clouds && npm i",
+    "deep-install": "npm i && cd colored-shapes && npm i && cd ../flying-blocks && npm i && cd ../above-clouds && npm i && cd ../break && npm i",
     "start": "node dist/index.js",
     "test": "ts-node src/index.ts"
   },

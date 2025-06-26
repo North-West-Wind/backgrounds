@@ -1,5 +1,28 @@
 const svgContainer = document.getElementById("svg-container")!;
 const vid = document.getElementById("vid") as HTMLVideoElement;
+const cloudDiv = document.getElementById("cloud")!;
+const rainDiv = document.getElementById("rain")!;
+const rainSound = document.getElementById("rain-sound") as HTMLAudioElement;
+const rainSound2 = document.getElementById("rain-sound-2") as HTMLAudioElement;
+
+rainSound.pause();
+rainSound2.pause();
+let raining = false;
+let rainInterval: ReturnType<typeof setInterval> | undefined;
+let intensity = 0;
+let rainVolume = 0.5;
+let checkWeather = false;
+let rainBuffer = false;
+let rainBufferInterval: ReturnType<typeof setInterval> | undefined;
+
+let action = false;
+const actions = [
+	blink,
+	rest,
+	happy,
+	look({ lx: 32, ly: 5, rx: 20, ry: 5 }),
+	look({ lx: -24, ly: 7, rx: -38, ry: 5 }),
+];
 
 const resize = () => {
 	const sixteenToNine = 16/9;
@@ -37,16 +60,24 @@ const resize = () => {
 window.addEventListener("resize", resize);
 resize();
 
-let action = false;
-const actions = [
-	blink,
-	rest,
-	happy,
-	look({ lx: 32, ly: 5, rx: 20, ry: 5 }),
-	look({ lx: -24, ly: 7, rx: -38, ry: 5 }),
-];
+rainSound.addEventListener("timeupdate", () => {
+	const buffer = 2;
+	if (rainSound.currentTime > rainSound.duration - buffer && !rainBuffer) {
+		rainBuffer = true;
+		rainSound2.volume = 0;
+		rainSound2.currentTime = 0;
+		rainSound2.play();
+	} else if (rainSound.currentTime < rainSound.duration - buffer && rainBuffer) {
+		rainBuffer = false;
+	}
+});
 
-let rainVolume = 0.5;
+rainSound2.addEventListener("timeupdate", () => {
+	if (!raining) rainSound2.pause();
+	else if (rainBuffer) rainSound2.volume = Math.min(1, rainSound2.currentTime) * rainVolume;
+	else if (rainSound2.volume > 0) rainSound2.volume = Math.max(0, rainSound2.volume - rainVolume / 0.001);
+	else rainSound2.pause();
+});
 
 fetch("/break/face.svg").then(async res => {
 	if (!res.ok) return;
@@ -57,6 +88,7 @@ fetch("/break/face.svg").then(async res => {
 	tryCloud();
 
 	const search = new URLSearchParams(window.location.search);
+	if (search.has("weather")) checkWeather = true;
 	if (search.has("rain")) rain();
 	else if (!search.has("norain")) tryRain();
 
@@ -144,7 +176,6 @@ function look({ lx, ly, rx, ry }: { lx: number, ly: number, rx: number, ry: numb
 	}
 };
 
-const cloudDiv = document.getElementById("cloud")!;
 function cloud() {
 	cloudDiv.style.width = `${Math.random() * 80 + 80}vw`;
 	cloudDiv.style.visibility = "visible";
@@ -166,13 +197,8 @@ function tryCloud() {
 	}, Math.random() * 90000 + 60000); // 1-2.5 minutes
 }
 
-const rainDiv = document.getElementById("rain")!;
-const rainSound = document.getElementById("rain-sound") as HTMLAudioElement;
-rainSound.pause();
-let raining = false;
-let rainInterval: ReturnType<typeof setInterval> | undefined;
-let intensity = 0;
 function rain() {
+	if (raining) return;
 	raining = true;
 	rainDiv.style.opacity = "1";
 	if (rainVolume > 0) {
@@ -200,11 +226,12 @@ function rain() {
 }
 
 function unrain() {
-	if (rainInterval) {
+	if (raining) {
 		raining = false;
 		rainDiv.style.opacity = "0";
 		rainDiv.addEventListener("transitionend", () => {
 			clearInterval(rainInterval);
+			rainInterval = undefined;
 			rainSound.pause();
 			rainSound.currentTime = 0;
 		}, { once: true });
@@ -212,18 +239,30 @@ function unrain() {
 }
 
 function tryRain() {
-	setTimeout(() => {
-		// 25% to rain
-		if (Math.random() < 0.25) {
-			rain();
-			setTimeout(() => {
-				unrain();
-				tryRain();
-			}, Math.random() * 600000 + 120000); // 2-12 minutes
-		} else {
-			setTimeout(() => {
-				tryRain();
-			}, Math.random() * 600000 + 120000); // 2-12 minutes
-		}
-	}, Math.random() * 600000);
+	if (checkWeather) {
+		const check = () => {
+			fetch("https://wttr.in/?0QT").then(async res => {
+				if (!res.ok) return;
+				if ((await res.text()).includes("rain")) rain();
+				else unrain();
+			});
+		};
+		check();
+		setInterval(check, 300000); // 5 minutes
+	} else {
+		setTimeout(() => {
+			// 25% to rain
+			if (Math.random() < 0.25) {
+				rain();
+				setTimeout(() => {
+					unrain();
+					tryRain();
+				}, Math.random() * 600000 + 120000); // 2-12 minutes
+			} else {
+				setTimeout(() => {
+					tryRain();
+				}, Math.random() * 600000 + 120000); // 2-12 minutes
+			}
+		}, Math.random() * 600000);
+	}
 }
