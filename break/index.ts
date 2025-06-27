@@ -14,6 +14,8 @@ let rainVolume = 0.5;
 let checkWeather = false;
 let rainBuffer = false;
 let rainBufferInterval: ReturnType<typeof setInterval> | undefined;
+let weatherCycle: number[] = [];
+let currentWeatherCycle = 0;
 
 let action = false;
 const actions = [
@@ -89,7 +91,11 @@ fetch("/break/face.svg").then(async res => {
 
 	const search = new URLSearchParams(window.location.search);
 	if (search.has("weather")) checkWeather = true;
-	if (search.has("rain")) rain();
+	if (search.has("weatherCycle")) {
+		weatherCycle = search.get("weatherCycle")!.split(",").map(x => parseInt(x));
+		if (weatherCycle.some(x => isNaN(x))) weatherCycle = [];
+		runWeatherCycle(search.has("rain"));
+	} else if (search.has("rain")) rain();
 	else if (!search.has("norain")) tryRain();
 
 	if (search.has("rainVolume")) {
@@ -265,4 +271,14 @@ function tryRain() {
 			}
 		}, Math.random() * 600000);
 	}
+}
+
+function runWeatherCycle(shouldRain: boolean) {
+	if (shouldRain) rain();
+	else unrain();
+	if (weatherCycle.length)
+		setTimeout(() => {
+			currentWeatherCycle = (currentWeatherCycle + 1) % weatherCycle.length;
+			runWeatherCycle(!shouldRain);
+		}, weatherCycle[currentWeatherCycle]);
 }
