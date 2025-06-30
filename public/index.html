@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onresize="resize()">
 	<h1>NorthWestWind Backgrounds</h1>
 	<h2><a href="https://github.com/North-West-Wind/backgrounds" target="source">Source code</a></h2>
   <div class="container">
@@ -39,7 +39,48 @@
 			<h2><a href="/break" target="break">Integrelle Takes a Break 🔗</a></h2>
 			<iframe src="/break"></iframe>
 		</div>
+		<div class="text">
+			<p>
+				"Integrelle Takes a Break" supports configuration through search parameters.<br>
+				For example, <a href="/break/?rain&rainVolume=0.1" target="break-params">https://background.northwestw.in/break/?rain&rainVolume=0.1</a>
+			</p>
+			<div>
+				<ul>
+					<li>norain - Make it never rain</li>
+					<li>rain - Make it always rain</li>
+					<li>rainVolume &lt;float&gt; - Set the rain volume between 0 and 1</li>
+					<li>
+						weather [hko:[station]] - Make it rain depending on real world weather
+						<ul>
+							<li>Defaults to get weather info from <a href="https://wttr.in" target="wttr.in">https://wttr.in</a></li>
+							<li>Supplying "hko" will get weather info from the <a href="https://www.hko.gov.hk" target="hko">Hong Kong Observatory</a> instead</li>
+							<li>Supplying "hko:station" will get weather info of a specific station. You can check the station name <a href="https://data.weather.gov.hk/weatherAPI/opendata/hourlyRainfall.php?lang=en" target="hko-data">here</a></li>
+						</ul>
+					</li>
+					<li>
+						weatherCycle &lt;int[,int...]&gt; - Preset the cycle between rain and sunny
+						<ul>
+							<li>Each integer is how long a weather condition will last for (in milliseconds)</li>
+							<li>For example, "20000,10000" will make it clear for 20 seconds, rain for 10 seconds, back to clear for 20 seconds and so on</li>
+							<li>If "rain" is supplied as a search parameter, the starting weather will be rain</li>
+							<li>This overrides the "weather" search parameter</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
+
+	<script>
+		let horizontal = true;
+		function resize() {
+			if (window.innerWidth > window.innerHeight == horizontal) return;
+			horizontal = window.innerWidth > window.innerHeight;
+			if (horizontal) Array.from(document.getElementsByClassName("container")).forEach(el => el.classList.remove("vert"));
+			else Array.from(document.getElementsByClassName("container")).forEach(el => el.classList.add("vert"));
+		}
+		resize();
+	</script>
 </body>
 
 </html>
