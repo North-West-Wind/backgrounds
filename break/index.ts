@@ -12,6 +12,8 @@ let rainInterval: ReturnType<typeof setInterval> | undefined;
 let intensity = 0;
 let rainVolume = 0.5;
 let checkWeather = false;
+let hkoWeather: string | undefined;
+let hkoWeatherTime: string | undefined;
 let rainBuffer = false;
 let rainBufferInterval: ReturnType<typeof setInterval> | undefined;
 let weatherCycle: number[] = [];
@@ -90,7 +92,15 @@ fetch("/break/face.svg").then(async res => {
 	tryCloud();
 
 	const search = new URLSearchParams(window.location.search);
-	if (search.has("weather")) checkWeather = true;
+	if (search.has("weather")) {
+		checkWeather = true;
+		const weatherSettings = search.get("weather")!;
+		if (weatherSettings.startsWith("hko")) {
+			const [_, station] = weatherSettings.split(":");
+			if (station) hkoWeather = station;
+			else hkoWeather = "";
+		}
+	}
 	if (search.has("weatherCycle")) {
 		weatherCycle = search.get("weatherCycle")!.split(",").map(x => parseInt(x));
 		if (weatherCycle.some(x => isNaN(x))) weatherCycle = [];
@@ -247,7 +257,25 @@ function unrain() {
 function tryRain() {
 	if (checkWeather) {
 		const check = () => {
-			fetch("https://wttr.in/?0QT").then(async res => {
+			if (typeof hkoWeather == "string") fetch("https://data.weather.gov.hk/weatherAPI/opendata/hourlyRainfall.php?lang=en").then(async res => {
+				if (!res.ok) return;
+				const data = await res.json() as {
+					obsTime: string,
+					hourlyRainfall: {
+						automaticWeatherStation: string,
+						automaticWeatherStationID: string,
+						value: `${number}`
+						unit: string
+					}[]
+				};
+				if (hkoWeatherTime == data.obsTime) return;
+				hkoWeatherTime = data.obsTime;
+				let station = data.hourlyRainfall.find(station => station.automaticWeatherStation	== hkoWeather || station.automaticWeatherStationID == hkoWeather);
+				if (!station) station = data.hourlyRainfall[0];
+				if (station.value != "0") rain();
+				else unrain();
+			});
+			else fetch("https://wttr.in/?0QT").then(async res => {
 				if (!res.ok) return;
 				if ((await res.text()).includes("rain")) rain();
 				else unrain();
