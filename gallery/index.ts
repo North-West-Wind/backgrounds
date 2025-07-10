@@ -15,7 +15,7 @@ fetch(list).then(async res => {
 			if (!line || line.startsWith("#")) continue;
 			srcs.push(line);
 		}
-		remains = srcs;
+		remains = Array.from(srcs);
 		spawn();
 	} catch (err) {
 		document.body.innerHTML = `${err}`;
@@ -30,7 +30,7 @@ function randomBetween(min: number, max: number) {
 const SECTIONS = 4;
 let nextSection = Math.floor(Math.random() * SECTIONS);
 function spawn() {
-	if (!remains.length) remains = srcs;
+	if (!remains.length) remains = Array.from(srcs);
 	const index = Math.floor(Math.random() * remains.length);
 	const img = document.createElement("img");
 	document.body.appendChild(img);
