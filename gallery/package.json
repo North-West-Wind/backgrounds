@@ -1,0 +1,16 @@
+{
+  "name": "gallery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc; rm -rf ../public/gallery; mkdir -p ../public/gallery; cp -r index.html index.js style.css default.txt images/ ../public/gallery"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0-only",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

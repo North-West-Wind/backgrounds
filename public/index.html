@@ -71,6 +71,22 @@
 		</div>
 	</div>
 
+  <div class="container">
+		<div>
+			<h2><a href="/gallery" target="gallery">Gallery 🔗</a></h2>
+			<iframe src="/gallery"></iframe>
+		</div>
+		<div class="text">
+			<p>
+				"Gallery" supports your own image list through search parameter "list".<br>
+				By default, it uses the list <a href="/gallery/default.txt" target="gallery-txt">/gallery/default.txt</a><br>
+				So the page without any options is equivalent to<br>
+				<a href="/gallery/?list=%2Fgallery%2Fdefault.txt" target="gallery-params">https://background.northwestw.in/gallery/?list=%2Fgallery%2Fdefault.txt</a><br>
+				Each line of the list must be a valid URL that points to an image.
+			</p>
+		</div>
+	</div>
+
 	<script>
 		let horizontal = true;
 		function resize() {

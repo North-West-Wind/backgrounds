@@ -1,0 +1,81 @@
+# comment like this
+/gallery/images/2nd draft.png
+/gallery/images/2022 autumn nww.png
+/gallery/images/2022 winter nww.png
+/gallery/images/2023 autumn nww.png
+/gallery/images/2023 spring nww.png
+/gallery/images/2023 summer nww.png
+/gallery/images/2024-autumn.png
+/gallery/images/2024 spring.png
+/gallery/images/2024-summer.png
+/gallery/images/atmosphere.png
+/gallery/images/atmos.png
+/gallery/images/banner.png
+/gallery/images/banner rev1.png
+/gallery/images/bg.png
+/gallery/images/blessie curve.png
+/gallery/images/busy2.png
+/gallery/images/busy.png
+/gallery/images/choco.png
+/gallery/images/christmas.png
+/gallery/images/connie.png
+/gallery/images/cookies.png
+/gallery/images/danas.png
+/gallery/images/diagonal.png
+/gallery/images/double.png
+/gallery/images/drink.png
+/gallery/images/dse nww hd.png
+/gallery/images/eatmoon.png
+/gallery/images/eepy.png
+/gallery/images/fishing.png
+/gallery/images/fried rice.png
+/gallery/images/glub hoodie.png
+/gallery/images/hike.png
+/gallery/images/hype.png
+/gallery/images/ice-cream.png
+/gallery/images/linkling.png
+/gallery/images/manyi.png
+/gallery/images/math.png
+/gallery/images/mid autumn.png
+/gallery/images/mothership.png
+/gallery/images/mothership straight.png
+/gallery/images/nessie.png
+/gallery/images/new year.png
+/gallery/images/octo.png
+/gallery/images/octos.png
+/gallery/images/old-banner.png
+/gallery/images/order.png
+/gallery/images/peertube.png
+/gallery/images/pile.png
+/gallery/images/pirate.png
+/gallery/images/pizza.png
+/gallery/images/power jelly squid.png
+/gallery/images/rain.png
+/gallery/images/rainy.png
+/gallery/images/salt.png
+/gallery/images/scarf.png
+/gallery/images/selfie.png
+/gallery/images/sick-old.png
+/gallery/images/sick.png
+/gallery/images/snake.png
+/gallery/images/splatoon-fedi.png
+/gallery/images/splatsville.png
+/gallery/images/square.png
+/gallery/images/squish.png
+/gallery/images/stack.png
+/gallery/images/stack-post.png
+/gallery/images/stop.png
+/gallery/images/stretch.png
+/gallery/images/suit.png
+/gallery/images/summatia.png
+/gallery/images/sumtea.png
+/gallery/images/taste.png
+/gallery/images/toraji.png
+/gallery/images/trip.png
+/gallery/images/wetdry.png
+/gallery/images/wizards.png
+/gallery/images/woah.png
+/gallery/images/wutip.png
+/gallery/images/you look great.png
+/gallery/images/zong2.png
+/gallery/images/zong.png

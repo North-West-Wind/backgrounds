@@ -1,0 +1,20 @@
+body {
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	background: linear-gradient(20deg, #277594, #279494);
+	transition: backdrop-filter linear 120s;
+	overflow-x: hidden;
+}
+
+img {
+	max-height: 100vh;
+	position: fixed;
+	left: 110vw;
+	translate: 0 0;
+	transition-property: translate;
+	transition-timing-function: linear;
+	transform-origin: top left;
+}
