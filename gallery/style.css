@@ -1,12 +1,18 @@
 body {
+	overflow: hidden;
+}
+
+#bg {
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
 	margin: 0;
 	background: linear-gradient(20deg, #277594, #279494);
-	transition: backdrop-filter linear 120s;
-	overflow-x: hidden;
+	transition-property: filter;
+	transition-timing-function: linear;
+	transition-duration: 120s;
 }
 
 img {

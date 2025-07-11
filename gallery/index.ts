@@ -17,6 +17,7 @@ fetch(list).then(async res => {
 		}
 		remains = Array.from(srcs);
 		spawn();
+		setTimeout(() => spawn(1), randomBetween(3000, 5000));
 	} catch (err) {
 		document.body.innerHTML = `${err}`;
 	}
@@ -26,10 +27,7 @@ function randomBetween(min: number, max: number) {
 	return Math.random() * (max - min) + min;
 }
 
-// pseudo-random vertical sections
-const SECTIONS = 4;
-let nextSection = Math.floor(Math.random() * SECTIONS);
-function spawn() {
+function spawn(topOffset = 0) {
 	if (!remains.length) remains = Array.from(srcs);
 	const index = Math.floor(Math.random() * remains.length);
 	const img = document.createElement("img");
@@ -42,8 +40,7 @@ function spawn() {
 		const vw = scale * img.clientWidth / window.innerWidth;
 		const vh = scale * img.clientHeight / window.innerHeight;
 
-		const section = nextSection;
-		img.style.top = `${(randomBetween(0, 100 / SECTIONS) + section * 100 / SECTIONS) * (100 - vh) / 100}vh`;
+		img.style.top = `${randomBetween(0, 50 - vh) + topOffset * 50}vh`;
 		
 		// Dynamic transition
 		// We want each image to stay visible for about 20 seconds
@@ -59,28 +56,25 @@ function spawn() {
 			img.remove();
 		};
 
-		if (Math.random() < 0.6) {
-			if (section <= 1) nextSection = section + Math.round(randomBetween(2, 3 - section));
-			else nextSection = section - Math.round(randomBetween(2, section));
-		} else {
-			nextSection = Math.floor(Math.random() * SECTIONS);
-			while (section == nextSection) nextSection = Math.floor(Math.random() * SECTIONS);
-		}
-
-		setTimeout(spawn, (duration * 1000 / (120 + vw)) * (10 + vw) * (Math.abs(nextSection - section) >= 2 ? 0.8 : 1));
+		setTimeout(() => spawn(topOffset), (duration * 1000 / (120 + vw)) * (5 + vw));
 	};
 	img.src = remains[index];
 	remains.splice(index, 1);
 }
 
-document.body.style.backdropFilter = "hue-rotate(360deg)";
-document.body.ontransitionend = () => {
-	const transition = document.body.style.transition;
-	document.body.style.transition = "";
+async function onTransitionEnd() {
+	const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
+	const duration = bg.style.transitionDuration;
+	bg.style.transitionDuration = "0s";
+	await wait(100);
+	bg.style.filter = "";
+	await wait(100);
+	bg.style.transitionDuration = duration;
+	await wait(100);
+	bg.style.filter = "hue-rotate(360deg)";
+	bg.addEventListener("transitionend", onTransitionEnd, { once: true });
+}
 
-	setTimeout(() => {
-		document.body.style.backdropFilter = "";
-		document.body.style.transition = transition;
-		document.body.style.backdropFilter = "hue-rotate(360deg)";
-	}, 100);
-};
+const bg = document.getElementById("bg")!;
+bg.style.filter = "hue-rotate(360deg)";
+bg.addEventListener("transitionend", onTransitionEnd, { once: true });
