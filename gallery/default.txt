@@ -13,13 +13,17 @@
 /gallery/images/banner.png
 /gallery/images/banner rev1.png
 /gallery/images/bg.png
+/gallery/images/bird.png
 /gallery/images/blessie curve.png
 /gallery/images/busy2.png
 /gallery/images/busy.png
+/gallery/images/cake.png
 /gallery/images/choco.png
 /gallery/images/christmas.png
+/gallery/images/cirrus.png
 /gallery/images/connie.png
 /gallery/images/cookies.png
+/gallery/images/cumulus.png
 /gallery/images/danas.png
 /gallery/images/diagonal.png
 /gallery/images/double.png
@@ -28,6 +32,7 @@
 /gallery/images/eatmoon.png
 /gallery/images/eepy.png
 /gallery/images/fishing.png
+/gallery/images/fog.png
 /gallery/images/fried rice.png
 /gallery/images/glub hoodie.png
 /gallery/images/hike.png
@@ -44,6 +49,7 @@
 /gallery/images/octo.png
 /gallery/images/octos.png
 /gallery/images/old-banner.png
+/gallery/images/onigiri.png
 /gallery/images/order.png
 /gallery/images/peertube.png
 /gallery/images/pile.png
@@ -65,6 +71,7 @@
 /gallery/images/stack.png
 /gallery/images/stack-post.png
 /gallery/images/stop.png
+/gallery/images/stratus.png
 /gallery/images/stretch.png
 /gallery/images/suit.png
 /gallery/images/summatia.png
@@ -73,6 +80,7 @@
 /gallery/images/toraji.png
 /gallery/images/trip.png
 /gallery/images/wetdry.png
+/gallery/images/wipha lingling podul.png
 /gallery/images/wizards.png
 /gallery/images/woah.png
 /gallery/images/wutip.png
