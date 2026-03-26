@@ -34,12 +34,17 @@
 /gallery/images/eepy.png
 /gallery/images/fire.png
 /gallery/images/fishing.png
+/gallery/images/flop.png
+/gallery/images/flowers.png
 /gallery/images/fog.png
 /gallery/images/fried rice.png
 /gallery/images/glub hoodie.png
 /gallery/images/hike.png
+/gallery/images/horse.png
 /gallery/images/hype.png
 /gallery/images/ice-cream.png
+/gallery/images/insects-waken.png
+/gallery/images/lab.png
 /gallery/images/linkling.png
 /gallery/images/mail-big.gif
 /gallery/images/manyi.png
@@ -49,6 +54,7 @@
 /gallery/images/mitag-ragasa.png
 /gallery/images/mothership.png
 /gallery/images/mothership straight.png
+/gallery/images/munch.png
 /gallery/images/nessie.png
 /gallery/images/new year.png
 /gallery/images/nsmbu-clouds.png
@@ -73,6 +79,8 @@
 /gallery/images/spider.png
 /gallery/images/splatoon-fedi.png
 /gallery/images/splatsville.png
+/gallery/images/spring-commences.png
+/gallery/images/spring showers.png
 /gallery/images/square.png
 /gallery/images/squish.png
 /gallery/images/stack.png
@@ -88,6 +96,7 @@
 /gallery/images/taste.png
 /gallery/images/toraji.png
 /gallery/images/trip.png
+/gallery/images/vernal-equinox.png
 /gallery/images/wetdry.png
 /gallery/images/wipha lingling podul.png
 /gallery/images/wizards.png
