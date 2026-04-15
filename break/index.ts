@@ -19,6 +19,9 @@ let rainBufferInterval: ReturnType<typeof setInterval> | undefined;
 let weatherCycle: number[] = [];
 let currentWeatherCycle = 0;
 
+if (new URLSearchParams(window.location.search).has("fork"))
+	vid.src = "/break/break-fork.webm";
+
 let action = false;
 const actions = [
 	blink,

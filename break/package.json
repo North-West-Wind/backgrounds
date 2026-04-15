@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-		"build": "tsc; rm -rf ../public/break; mkdir -p ../public/break; cp -r index.html index.js style.css break.webm face.svg rain.mp3 ../public/break"
+		"build": "tsc; rm -rf ../public/break; mkdir -p ../public/break; cp -r index.html index.js style.css break.webm break-fork.webm face.svg rain.mp3 ../public/break"
   },
   "keywords": [],
   "author": "",
