@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import fs from "fs";
 import { AddressInfo } from "net";
 import path from "path";
 
@@ -51,6 +52,17 @@ app.get("/break", (_req, res, next) => {
 app.get("/gallery", (_req, res, next) => {
 	try {
     res.sendFile("gallery/index.html", { root: path.join(__dirname, "../public") });
+	} catch (error) {
+		next(error);
+	}
+});
+
+app.get("/gallery/default.txt", (_req, res, next) => {
+	try {
+		res.header("Content-Type", "text/plain");
+		res.send(fs.readdirSync(path.join(__dirname, "../public/gallery/images"))
+			.map(file => `/gallery/images/${file}`)
+			.join("\n"));
 	} catch (error) {
 		next(error);
 	}
